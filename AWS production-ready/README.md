@@ -1,9 +1,9 @@
 
 
 
-<img width="2752" height="1536" alt="Gemini_Generated_Image_be742tbe742tbe74" src="https://github.com/user-attachments/assets/5435c6c8-7d6a-4dc2-94c4-c1b4c75278da" />
+<img width="2752" height="1536" alt="Gemini_Generated_Image_1albmf1albmf1alb" src="https://github.com/user-attachments/assets/c0e4338f-0492-4f68-bc1a-f843cffbc063" />
 
-
+ 
 
 Absolutely. I’ll treat this as an **engineering apprenticeship**, not an AWS course.
 
