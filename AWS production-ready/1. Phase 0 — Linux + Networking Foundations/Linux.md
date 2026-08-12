@@ -675,9 +675,638 @@ Application gets time to gracefully shut down
 SIGKILL (if still running)
 ```
 
-Your roadmap specifically lists **SIGTERM, SIGKILL, SIGINT and SIGHUP**, and connects signals to **Kubernetes termination and graceful shutdown**. 
+**############################## stdout/stderr  ?? ##############################**
+
+## stdout / stderr in Linux — AWS/DevOps Context
+
+Linux processes normally have **three standard streams**:
+
+```text
+stdin   → input
+stdout  → normal output
+stderr  → error output
+```
+
+### 1. stdout — Standard Output
+
+**stdout is where a process writes its normal/expected output.**
+
+Example:
+
+```bash
+ls
+```
+
+The list of files is sent to **stdout**.
+
+You can redirect stdout to a file:
+
+```bash
+ls > output.txt
+```
+
+Now the normal output goes into `output.txt`.
+
+---
+
+### 2. stderr — Standard Error
+
+**stderr is where a process writes error messages.**
+
+Example:
+
+```bash
+ls /wrong-directory
+```
+
+The error message is sent to **stderr**.
+
+Redirect only errors:
+
+```bash
+ls /wrong-directory 2> error.log
+```
+
+Here:
+
+```text
+1 = stdout
+2 = stderr
+```
+
+---
+
+### AWS Production Example — STAR
+
+**S — Situation:**
+An application running on an EC2 instance was failing, but its normal output and error messages were mixed together.
+
+**T — Task:**
+I needed to separate normal application output from errors to troubleshoot the issue.
+
+**A — Action:**
+I redirected `stdout` and `stderr` separately and analyzed the error output to identify the actual failure.
+
+**R — Result:**
+I isolated the application error faster and resolved the issue without blindly changing the infrastructure.
+
+### 🔥 DevOps / Docker / Kubernetes connection
+
+This concept becomes **very important** later:
+
+```text
+Linux Process
+    │
+    ├── stdout ──→ normal logs
+    │
+    └── stderr ──→ error logs
+             ↓
+          Docker
+             ↓
+       Kubernetes
+             ↓
+      Logging system
+```
+
+For Kubernetes containers, applications commonly write logs to **stdout/stderr**, which the container/runtime and logging system can collect.
+
+Your roadmap explicitly includes **stdout/stderr** as a Linux foundation because troubleshooting starts with understanding **what actually happened**, not simply which command to run.  
 
 ### Interview answer
 
-> **“A Linux signal is a notification sent to a process to request an action, such as termination or interruption. In production, I normally use SIGTERM for graceful shutdown and SIGKILL only when a process doesn't terminate properly. This concept is also important for graceful application termination in Kubernetes.”**
+> **“stdout is the standard output stream used by a Linux process for normal output, while stderr is the standard error stream used for error messages. In DevOps, understanding these streams is important for log collection, troubleshooting, Docker, and Kubernetes applications.”**
+
+**############################## stdout/stderr  ?? ##############################**
+
+## stdout / stderr in Linux — AWS/DevOps Context
+
+Linux processes normally have **three standard streams**:
+
+```text
+stdin   → input
+stdout  → normal output
+stderr  → error output
+```
+
+### 1. stdout — Standard Output
+
+**stdout is where a process writes its normal/expected output.**
+
+Example:
+
+```bash
+ls
+```
+
+The list of files is sent to **stdout**.
+
+You can redirect stdout to a file:
+
+```bash
+ls > output.txt
+```
+
+Now the normal output goes into `output.txt`.
+
+---
+
+### 2. stderr — Standard Error
+
+**stderr is where a process writes error messages.**
+
+Example:
+
+```bash
+ls /wrong-directory
+```
+
+The error message is sent to **stderr**.
+
+Redirect only errors:
+
+```bash
+ls /wrong-directory 2> error.log
+```
+
+Here:
+
+```text
+1 = stdout
+2 = stderr
+```
+
+---
+
+### AWS Production Example — STAR
+
+**S — Situation:**
+An application running on an EC2 instance was failing, but its normal output and error messages were mixed together.
+
+**T — Task:**
+I needed to separate normal application output from errors to troubleshoot the issue.
+
+**A — Action:**
+I redirected `stdout` and `stderr` separately and analyzed the error output to identify the actual failure.
+
+**R — Result:**
+I isolated the application error faster and resolved the issue without blindly changing the infrastructure.
+
+### 🔥 DevOps / Docker / Kubernetes connection
+
+This concept becomes **very important** later:
+
+```text
+Linux Process
+    │
+    ├── stdout ──→ normal logs
+    │
+    └── stderr ──→ error logs
+             ↓
+          Docker
+             ↓
+       Kubernetes
+             ↓
+      Logging system
+```
+
+For Kubernetes containers, applications commonly write logs to **stdout/stderr**, which the container/runtime and logging system can collect.
+
+Your roadmap explicitly includes **stdout/stderr** as a Linux foundation because troubleshooting starts with understanding **what actually happened**, not simply which command to run.  
+
+### Interview answer
+
+> **“stdout is the standard output stream used by a Linux process for normal output, while stderr is the standard error stream used for error messages. In DevOps, understanding these streams is important for log collection, troubleshooting, Docker, and Kubernetes applications.”**
+
+
+
+**############################## stdout/stderr  ?? ##############################**
+
+## stdout / stderr in Linux — AWS/DevOps Context
+
+Linux processes normally have **three standard streams**:
+
+```text
+stdin   → input
+stdout  → normal output
+stderr  → error output
+```
+
+### 1. stdout — Standard Output
+
+**stdout is where a process writes its normal/expected output.**
+
+Example:
+
+```bash
+ls
+```
+
+The list of files is sent to **stdout**.
+
+You can redirect stdout to a file:
+
+```bash
+ls > output.txt
+```
+
+Now the normal output goes into `output.txt`.
+
+---
+
+### 2. stderr — Standard Error
+
+**stderr is where a process writes error messages.**
+
+Example:
+
+```bash
+ls /wrong-directory
+```
+
+The error message is sent to **stderr**.
+
+Redirect only errors:
+
+```bash
+ls /wrong-directory 2> error.log
+```
+
+Here:
+
+```text
+1 = stdout
+2 = stderr
+```
+
+---
+
+### AWS Production Example — STAR
+
+**S — Situation:**
+An application running on an EC2 instance was failing, but its normal output and error messages were mixed together.
+
+**T — Task:**
+I needed to separate normal application output from errors to troubleshoot the issue.
+
+**A — Action:**
+I redirected `stdout` and `stderr` separately and analyzed the error output to identify the actual failure.
+
+**R — Result:**
+I isolated the application error faster and resolved the issue without blindly changing the infrastructure.
+
+### 🔥 DevOps / Docker / Kubernetes connection
+
+This concept becomes **very important** later:
+
+```text
+Linux Process
+    │
+    ├── stdout ──→ normal logs
+    │
+    └── stderr ──→ error logs
+             ↓
+          Docker
+             ↓
+       Kubernetes
+             ↓
+      Logging system
+```
+
+For Kubernetes containers, applications commonly write logs to **stdout/stderr**, which the container/runtime and logging system can collect.
+
+Your roadmap explicitly includes **stdout/stderr** as a Linux foundation because troubleshooting starts with understanding **what actually happened**, not simply which command to run.  
+
+### Interview answer
+
+> **“stdout is the standard output stream used by a Linux process for normal output, while stderr is the standard error stream used for error messages. In DevOps, understanding these streams is important for log collection, troubleshooting, Docker, and Kubernetes applications.”**
+
+**############################## stdout/stderr  ?? ##############################**
+
+## Pipes / Redirection in Linux — AWS/DevOps Context
+
+**Redirection** means sending a command's input/output somewhere else instead of the normal terminal.
+
+**Pipe (`|`)** means sending the **output of one command directly as input to another command**.
+
+### 1. Redirection
+
+#### `>` — overwrite output
+
+```bash
+ls > files.txt
+```
+
+```text
+ls
+ ↓
+stdout
+ ↓
+files.txt
+```
+
+#### `>>` — append output
+
+```bash
+ls >> files.txt
+```
+
+Adds output to the existing file instead of overwriting it.
+
+#### `2>` — redirect errors
+
+```bash
+command 2> error.log
+```
+
+```text
+stderr → error.log
+```
+
+#### `&>` — redirect stdout + stderr
+
+```bash
+command &> output.log
+```
+
+---
+
+### 2. Pipe `|`
+
+Example:
+
+```bash
+ps aux | grep nginx
+```
+
+Here:
+
+```text
+ps aux
+  ↓
+stdout
+  ↓
+  |
+  ↓
+grep nginx
+  ↓
+filtered result
+```
+
+You are taking the output of `ps aux` and giving it to `grep`.
+
+Another common example:
+
+```bash
+cat /var/log/app.log | grep ERROR
+```
+
+This searches the log output for `ERROR`.
+
+---
+
+## AWS Production Example — STAR
+
+**S — Situation:**
+An application running on an EC2 instance was generating a large amount of logs, and I needed to quickly identify errors.
+
+**T — Task:**
+Find the relevant errors without manually reading the entire log file.
+
+**A — Action:**
+I used Linux pipes and redirection to filter and save the required information:
+
+```bash
+cat /var/log/app.log | grep ERROR > errors.txt
+```
+
+The pipe passed the log output to `grep`, and `>` saved the filtered results.
+
+**R — Result:**
+I quickly isolated the relevant errors and used them for troubleshooting.
+
+### 🔥 DevOps connection
+
+```text
+Linux
+ ↓
+stdout / stderr
+ ↓
+Pipes & Redirection
+ ↓
+Logs
+ ↓
+Docker
+ ↓
+Kubernetes
+ ↓
+EKS
+ ↓
+Observability
+```
+
+Your roadmap specifically includes **pipes/redirection** as a Linux foundation, alongside `stdout/stderr`, because these become useful for real troubleshooting. 
+
+### Interview answer
+
+> **“Pipes and redirection are Linux mechanisms for controlling command input and output. Redirection sends stdout or stderr to files or other destinations, while a pipe `|` passes the output of one command as input to another. I commonly use them for log analysis and production troubleshooting.”**
+
+**############################## SSH  ?? ##############################**
+
+## SSH — AWS/DevOps Context
+
+**SSH (Secure Shell)** is a secure protocol used to **remotely connect to and manage a Linux server** over a network.
+
+In AWS, the most common use is connecting to an **EC2 instance**:
+
+```text
+Your Laptop
+     │
+     │ SSH
+     ↓
+Internet
+     │
+     ↓
+AWS EC2
+     │
+     ↓
+Ubuntu Linux
+```
+
+### Typical EC2 command
+
+```bash
+ssh -i my-key.pem ubuntu@<EC2-PUBLIC-IP>
+```
+
+Meaning:
+
+* `ssh` → SSH client
+* `-i my-key.pem` → private key for authentication
+* `ubuntu` → Linux user
+* `<EC2-PUBLIC-IP>` → EC2 server address
+
+### What happens?
+
+```text
+SSH Client
+   ↓
+Network
+   ↓
+EC2 Security Group → TCP 22 allowed?
+   ↓
+SSH Server (sshd)
+   ↓
+Authentication
+   ↓
+Linux Shell
+```
+
+So if SSH doesn't work, don't immediately assume the key is wrong. Check:
+
+```text
+1. EC2 running?
+2. Correct public IP/DNS?
+3. Security Group allows TCP 22?
+4. Network route available?
+5. SSH service running?
+6. Correct username?
+7. Correct private key/permissions?
+```
+
+### Production STAR Example
+
+**S — Situation:**
+I needed to troubleshoot an application running on a Linux EC2 production server.
+
+**T — Task:**
+I had to securely access the server and investigate the issue.
+
+**A — Action:**
+I connected using SSH with the appropriate user and key, checked the application process, logs, services, and system resources, and investigated the root cause.
+
+**R — Result:**
+I identified and resolved the issue while maintaining secure access to the production server.
+
+### 🔥 Important AWS connection
+
+SSH is primarily a **management access mechanism**, not how application users access your EC2 application.
+
+```text
+DevOps Engineer
+      ↓ SSH :22
+   EC2 Linux
+
+Users
+      ↓ HTTP/HTTPS :80/:443
+   Load Balancer
+      ↓
+   Application
+```
+
+### Interview answer
+
+> **“SSH is a secure protocol used to remotely access and manage Linux servers. In AWS, I commonly use SSH to connect to EC2 instances for administration and troubleshooting. The connection typically uses TCP port 22 and key-based authentication.”**
+
+Your roadmap places **SSH** in the Linux foundation because you'll use it directly when working with AWS EC2. 
+
+**############################## SSH  ?? ##############################**
+
+## SSH — AWS/DevOps Context
+
+**SSH (Secure Shell)** is a secure protocol used to **remotely connect to and manage a Linux server** over a network.
+
+In AWS, the most common use is connecting to an **EC2 instance**:
+
+```text
+Your Laptop
+     │
+     │ SSH
+     ↓
+Internet
+     │
+     ↓
+AWS EC2
+     │
+     ↓
+Ubuntu Linux
+```
+
+### Typical EC2 command
+
+```bash
+ssh -i my-key.pem ubuntu@<EC2-PUBLIC-IP>
+```
+
+Meaning:
+
+* `ssh` → SSH client
+* `-i my-key.pem` → private key for authentication
+* `ubuntu` → Linux user
+* `<EC2-PUBLIC-IP>` → EC2 server address
+
+### What happens?
+
+```text
+SSH Client
+   ↓
+Network
+   ↓
+EC2 Security Group → TCP 22 allowed?
+   ↓
+SSH Server (sshd)
+   ↓
+Authentication
+   ↓
+Linux Shell
+```
+
+So if SSH doesn't work, don't immediately assume the key is wrong. Check:
+
+```text
+1. EC2 running?
+2. Correct public IP/DNS?
+3. Security Group allows TCP 22?
+4. Network route available?
+5. SSH service running?
+6. Correct username?
+7. Correct private key/permissions?
+```
+
+### Production STAR Example
+
+**S — Situation:**
+I needed to troubleshoot an application running on a Linux EC2 production server.
+
+**T — Task:**
+I had to securely access the server and investigate the issue.
+
+**A — Action:**
+I connected using SSH with the appropriate user and key, checked the application process, logs, services, and system resources, and investigated the root cause.
+
+**R — Result:**
+I identified and resolved the issue while maintaining secure access to the production server.
+
+### 🔥 Important AWS connection
+
+SSH is primarily a **management access mechanism**, not how application users access your EC2 application.
+
+```text
+DevOps Engineer
+      ↓ SSH :22
+   EC2 Linux
+
+Users
+      ↓ HTTP/HTTPS :80/:443
+   Load Balancer
+      ↓
+   Application
+```
+
+### Interview answer
+
+> **“SSH is a secure protocol used to remotely access and manage Linux servers. In AWS, I commonly use SSH to connect to EC2 instances for administration and troubleshooting. The connection typically uses TCP port 22 and key-based authentication.”**
+
+Your roadmap places **SSH** in the Linux foundation because you'll use it directly when working with AWS EC2. 
+
+**############################## SSH  ?? ##############################**
 
